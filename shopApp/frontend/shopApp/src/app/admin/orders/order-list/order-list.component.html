@@ -1,0 +1,48 @@
+<div class="container mb-5" style="padding-left: 10%;">
+    <div class="row">
+        <h1 class="mb-2">Verilen Siparişler</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-10" style="padding-left: 10%;">
+        <table class="table table-hower">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Ürün</th>
+                    <th>Fiyat</th>
+                    <th>Miktar</th>
+                    <th>Toplam</th>
+                    <th>Durum</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let cartItem of cartItemDto">
+                    <td><img [src]="cartItem.imageUrl" width="50px"></td>
+                    <td>{{cartItem.productName}}</td>
+                    <td>{{cartItem.productPrice}}</td>
+                    <td>{{cartItem.quantity}}</td>
+                    <td>{{cartItem.productPrice * cartItem.quantity}}</td>
+                    <td>{{cartItem.status}}</td>
+                    <td>
+                        <button (click)="deleteCartItem(cartItem.id)" class="btn btn-danger btn-sm">
+                            Kaydı Sil
+                        </button>
+
+                    </td>
+                    <td>
+                        <button 
+                          *ngIf="cartItem.status === 'REQUEST_SENDED'" 
+                          (click)="makeOrder(cartItem.id)" 
+                          class="btn btn-primary btn-sm">
+                          Siparişi Gönder
+                        </button>
+                      </td>
+                      
+                </tr>
+            </tbody>
+        </table>
+       
+    </div>
+</div>

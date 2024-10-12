@@ -1,0 +1,29 @@
+<h4>
+    {{editing ? "Düzenle" : "Ekle"}} Ürün
+</h4>
+<form #form="ngForm" (ngSubmit)="save(form)">
+    <div class="form-group">
+        <label>Ürün ismi</label>
+        <input type="text" class="form-control" name="name" [(ngModel)]="product.name" required>
+    </div>
+    <div class="form-group">
+        <label>Ürün Fiyatı</label>
+        <input type="number" class="form-control" name="price" [(ngModel)]="product.price" required>
+    </div>
+    <div class="form-group">
+        <label>Ürün Açıklaması</label>
+        <input type="text" class="form-control" name="description" [(ngModel)]="product.description">
+    </div>
+    <div class="form-group">
+        <label>Ürün resmi (string url şeklinde)</label>
+        <input type="text" class="form-control" name="imageUrl" [(ngModel)]="product.imageUrl">
+    </div>
+    <div class="form-group">
+        <label>Ürün kategorisi</label>
+        <select class="form-control" name="categoryId" [(ngModel)]="product.category.categoryId" required>
+            <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
+        </select>
+    </div>
+    <button class="btn btn-primary" type="submit">{{editing ? "Kaydet" : "Ekle"}} Ürün</button>
+    <button class="btn btn-warning" [routerLink]="['/admin/main/products']">Vazgeç</button>
+</form>

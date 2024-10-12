@@ -1,0 +1,11 @@
+<h4>
+    {{editing ? "Düzenle" : "Ekle"}} Ürün
+</h4>
+<form #form="ngForm" (ngSubmit)="save(form)">
+    <div class="form-group">
+        <label>Ürün ismi</label>
+        <input type="text" class="form-control" name="name" [(ngModel)]="category.name" required>
+    </div>
+    <button class="btn btn-primary" type="submit">{{editing ? "Kaydet" : "Ekle"}} Ürün</button>
+    <button class="btn btn-warning" [routerLink]="['/admin/main/categories']">Vazgeç</button>
+</form>
